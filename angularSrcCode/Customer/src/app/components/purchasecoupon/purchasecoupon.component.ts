@@ -11,16 +11,18 @@ export class PurchasecouponComponent implements OnInit {
 
   public coupons: Coupon[];
   public coupon: Coupon = new Coupon();
-  public messageSuccess : String;
-  public messageError : String;
+  public messageSuccess: String;
+  public messageError: String;
+  showSpinner: boolean = true;
 
   constructor(private servicer: CustomerService) { }
-  
+
   ngOnInit() {
     var self = this;
     this.coupons = new Array();
     self.servicer.viewAllCoupons().subscribe(
-      function (coupons) {
+      (coupons) => {
+        self.showSpinner = false;
         for (let c of coupons) {
           c = new Coupon(c);
           self.coupons.push(c);
@@ -28,25 +30,26 @@ export class PurchasecouponComponent implements OnInit {
       }
     );
   }
-  
+
   clickPurchase() {
-    this.servicer.purchaseCoupon(this.coupon).subscribe ( 
-      (success)=> {
+    this.showSpinner = true;
+    this.servicer.purchaseCoupon(this.coupon).subscribe(
+      (success) => {
+        this.showSpinner = false;
         this.messageSuccess = 'Coupon successfully purchased!'
-        // console.log(this.message);
+
       },
-      (error)=>{
+      (error) => {
+        this.showSpinner = false;
         this.messageError = 'Could not purchase coupon because you already have this coupon!';
-        // console.log(this.message);
       }
-      );
+    );
   }
 
   setCoupon(coupon: Coupon) {
     this.messageSuccess = undefined;
     this.messageError = undefined;
     this.coupon = coupon;
-    // console.log(this.message);
   }
 
 }

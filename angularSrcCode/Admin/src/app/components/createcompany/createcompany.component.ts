@@ -14,46 +14,51 @@ export class CreatecompanyComponent implements OnInit {
   public newCompanyForm: FormGroup;
   public company: Company = new Company();
   public companies: Company[] = [];
-  public messageSuccess : String;
-  public messageError : String;
+  public messageSuccess: String;
+  public messageError: String;
+
+  showSpinner: boolean = true;
 
   constructor(private servicer: AdminService, private fb: FormBuilder) {
-    this.newCompanyForm = fb.group ({
+    this.newCompanyForm = fb.group({
       'compName': [null, [Validators.required, this.uniqueNameValidator.bind(this)]],
       'password': [null, Validators.required],
       'email': [null, [Validators.required, Validators.email]]
     })
-   }
-
-  createCompany() {
-
-    this.messageSuccess = undefined;
-    this.messageError = undefined;
-    this.servicer.createCompany(this.company).subscribe(
-      (success)=>{
-        this.messageSuccess = 'Company was created successfully!';
-      },
-      (error)=>{
-        this.messageError = 'Could not create the company';
-      }
-
-      
-    );
   }
 
   ngOnInit() {
     var self = this;
     this.companies = new Array();
     self.servicer.getAllCompanies().subscribe(
-      function (companies) {
+      (companies) => {
+        self.showSpinner = false;
         for (let c of companies) {
           c = new Company(c);
           self.companies.push(c);
         }
       }
     );
-
   }
+
+  createCompany() {
+    this.showSpinner = true;
+    this.messageSuccess = undefined;
+    this.messageError = undefined;
+    this.servicer.createCompany(this.company).subscribe(
+      (success) => {
+        this.showSpinner = false;
+        this.messageSuccess = 'Company was created successfully!';
+      },
+      (error) => {
+        this.showSpinner = false;
+        this.messageError = 'Could not create the company';
+      }
+
+
+    );
+  }
+
 
   uniqueNameValidator(control: FormControl): { [message: string]: boolean } {
     var self = this;

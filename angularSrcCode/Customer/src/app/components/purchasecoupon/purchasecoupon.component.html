@@ -2,6 +2,7 @@
   <h2 class="text-center">Full Coupons List</h2>
   <div class="alert alert-danger" *ngIf="messageError!=undefined">{{messageError}}</div>
   <div class="alert alert-success" *ngIf="messageSuccess!=undefined">{{messageSuccess}}</div>
+  <app-spinner *ngIf="showSpinner"></app-spinner>
   <table class="table table-sm table-hover">
     <thead>
       <tr>

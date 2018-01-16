@@ -26,9 +26,9 @@ public class CouponSystemNewApplication {
 		beanFactory.autowireBean(sessionAuthFilter);
 		
 		filterRego.setFilter(sessionAuthFilter);
-		filterRego.addUrlPatterns("/admin/*");
-		filterRego.addUrlPatterns("/company/*");
-		filterRego.addUrlPatterns("/customer/*");
+		filterRego.addUrlPatterns("/Admin/*");
+		filterRego.addUrlPatterns("/Company/*");
+		filterRego.addUrlPatterns("/Customer/*");
 		return filterRego;
 	}
 }

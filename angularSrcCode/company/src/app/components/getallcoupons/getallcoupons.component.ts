@@ -16,13 +16,30 @@ export class GetallcouponsComponent implements OnInit {
   public type : CouponType;
   public date: Date;
   public price : number;
+
+  showSpinner: boolean = true;
   
   constructor(private servicer: CompanyService) { }
   
+  ngOnInit() {
+    var self = this;
+    this.coupons = new Array();
+    self.servicer.getAllCoupons().subscribe(
+      (coupons)=>{
+          self.showSpinner = false;
+          for (let c of coupons) {
+          c = new Coupon(c);
+          self.coupons.push(c);
+        }
+      }
+    );
+  }
   clickDelete(){
     var self = this;
+    self.showSpinner = true;
     self.servicer.deleteCoupon(self.coupon).subscribe(
       (success)=> {
+        self.showSpinner = false;
         var message = this.coupon.getTitle + " was successfully deleted!";
         swal({
           title: "GREAT!",
@@ -34,8 +51,10 @@ export class GetallcouponsComponent implements OnInit {
       );
   }
   clickUpdate(){
+    this.showSpinner = true;
     this.servicer.updateCoupon(this.coupon).subscribe(
       (success)=> {
+        this.showSpinner = false;
         var message = this.coupon.getTitle + " was successfully updated!"
         swal("Great job!", message, "success", {
         });
@@ -44,24 +63,14 @@ export class GetallcouponsComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-    var self = this;
-    this.coupons = new Array();
-    self.servicer.getAllCoupons().subscribe(
-      (coupons)=>{
-          for (let c of coupons) {
-          c = new Coupon(c);
-          self.coupons.push(c);
-        }
-      }
-    );
-  }
 
   clickPrice(){
     var self = this;
+    self.showSpinner = true;
     this.coupons = new Array();
     self.servicer.getCouponsByPrice(self.price).subscribe(
-      function (coupons) {
+      (coupons) => {
+        self.showSpinner = false;
         for (let c of coupons) {
           c = new Coupon(c);
           self.coupons.push(c);
@@ -72,9 +81,11 @@ export class GetallcouponsComponent implements OnInit {
 
   clickDate(){
     var self = this;
+    self.showSpinner = true;
     this.coupons = new Array();
     self.servicer.getCouponsByDate(self.date).subscribe(
-      function (coupons) {
+      (coupons) => {
+        self.showSpinner = false;
         for (let c of coupons) {
           c = new Coupon(c);
           self.coupons.push(c);
@@ -85,9 +96,11 @@ export class GetallcouponsComponent implements OnInit {
 
   clickType(){
     var self = this;
+    self.showSpinner = true;
     this.coupons = new Array();
     self.servicer.getCouponsByType(self.type).subscribe(
-      function (coupons) {
+      (coupons) => {
+        self.showSpinner = false;
         for (let c of coupons) {
           c = new Coupon(c);
           self.coupons.push(c);
@@ -102,9 +115,11 @@ export class GetallcouponsComponent implements OnInit {
 
   reset(){
     var self = this;
+    self.showSpinner = true;
     this.coupons = new Array();
     self.servicer.getAllCoupons().subscribe(
       (coupons)=>{
+        self.showSpinner = false;
         for (let c of coupons) {
         c = new Coupon(c);
         self.coupons.push(c);

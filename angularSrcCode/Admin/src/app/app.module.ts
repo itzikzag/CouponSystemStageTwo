@@ -14,6 +14,7 @@ import { CreatecompanyComponent } from './components/createcompany/createcompany
 import { GetallcustomersComponent } from './components/getallcustomers/getallcustomers.component';
 import { GetCustomerComponent } from './components/get-customer/get-customer.component';
 import { CreatecustomerComponent } from './components/createcustomer/createcustomer.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 
@@ -27,6 +28,7 @@ import { CreatecustomerComponent } from './components/createcustomer/createcusto
     GetallcustomersComponent,
     GetCustomerComponent,
     CreatecustomerComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

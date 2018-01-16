@@ -12,6 +12,7 @@ import { CreatecouponComponent } from './components/createcoupon/createcoupon.co
 import { GetcouponComponent } from './components/getcoupon/getcoupon.component';
 import { GetcompanyComponent } from './components/getcompany/getcompany.component';
 import { GetallcouponsComponent } from './components/getallcoupons/getallcoupons.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { GetallcouponsComponent } from './components/getallcoupons/getallcoupons
     GetcouponComponent,
     GetcompanyComponent,
     GetallcouponsComponent,
-    HeaderComponent
+    HeaderComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

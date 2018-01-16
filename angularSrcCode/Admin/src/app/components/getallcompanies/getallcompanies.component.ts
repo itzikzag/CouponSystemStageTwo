@@ -12,6 +12,8 @@ export class GetallcompaniesComponent implements OnInit {
   
   public companies: Company[] = [];
   public company: Company = new Company();
+
+  showSpinner: boolean = true;
   
   constructor(private servicer: AdminService) { }
   
@@ -19,7 +21,8 @@ export class GetallcompaniesComponent implements OnInit {
     var self = this;
     this.companies = new Array();
     self.servicer.getAllCompanies().subscribe(
-      function (companies) {
+      (companies)=> {
+        this.showSpinner = false;
         for (let c of companies) {
           c = new Company(c);
           self.companies.push(c);
@@ -30,8 +33,10 @@ export class GetallcompaniesComponent implements OnInit {
   }
   clickDelete() {
     var self = this;
+    self.showSpinner = true;
     this.servicer.deleteCompany(this.company).subscribe(
       (success)=> {
+        self.showSpinner = false;
         var message = this.company.getCompName + " was successfully deleted!";
         swal({
           title: "GREAT!",
@@ -43,8 +48,10 @@ export class GetallcompaniesComponent implements OnInit {
     );
   }
   clickUpdate() {
+    this.showSpinner = true;
     this.servicer.updateCompany(this.company).subscribe(
       (success)=> {
+        this.showSpinner = false;
         var message = this.company.getCompName + " was successfully updated!"
         swal("Great job!", message, "success", {
         });
@@ -61,8 +68,10 @@ export class GetallcompaniesComponent implements OnInit {
   reset(){
     var self = this;
     this.companies = new Array();
+    this.showSpinner = true;
     self.servicer.getAllCompanies().subscribe(
-      function (companies) {
+      (companies)=> {
+        this.showSpinner = false;
         for (let c of companies) {
           c = new Company(c);
           self.companies.push(c);

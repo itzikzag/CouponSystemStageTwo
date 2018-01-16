@@ -13,6 +13,7 @@
 </div>
 <div class="alert alert-danger" *ngIf="messageError!=undefined">{{messageError}}</div>
 <div class="alert alert-danger" *ngIf="messageSuccess!=undefined">{{messageSuccess}}</div>
+<app-spinner *ngIf="showSpinner"></app-spinner>
 <br>
 <div class="row">
   <div class="jumbotron">

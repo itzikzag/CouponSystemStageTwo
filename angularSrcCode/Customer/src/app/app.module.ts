@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { GetallpurchasedcouponsComponent } from './components/getallpurchasedcoupons/getallpurchasedcoupons.component';
 import { PurchasecouponComponent } from './components/purchasecoupon/purchasecoupon.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { PurchasecouponComponent } from './components/purchasecoupon/purchasecou
     AppComponent,
     HeaderComponent,
     GetallpurchasedcouponsComponent,
-    PurchasecouponComponent
+    PurchasecouponComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

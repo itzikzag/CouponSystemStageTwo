@@ -13,30 +13,19 @@ export class CreatecustomerComponent implements OnInit {
   public newCustomerForm: FormGroup;
   public customer: Customer = new Customer();
   public customers: Customer[];
-  public messageSuccess : String;
-  public messageError : String;
+  public messageSuccess: String;
+  public messageError: String;
+
+  showSpinner: boolean = true;
 
   constructor(private servicer: AdminService, private fb: FormBuilder) { }
-
-  createCustomer() {
-
-    this.messageSuccess = undefined;
-    this.messageError = undefined;
-    this.servicer.createCustomer(this.customer).subscribe(
-       (success)=>{
-        this.messageSuccess = 'Customer was created successfully!';
-      },
-      (error)=>{
-        this.messageError = 'Could not create the customer';
-      }
-    );
-  }
 
   ngOnInit() {
     var self = this;
     this.customers = new Array();
     self.servicer.getAllCustomers().subscribe(
-      function (customers) {
+      (customers) => {
+        self.showSpinner = false;
         for (let c of customers) {
           c = new Customer(c);
           self.customers.push(c);
@@ -48,6 +37,23 @@ export class CreatecustomerComponent implements OnInit {
       'password': [null, [Validators.required]]
     })
   }
+  createCustomer() {
+
+    this.showSpinner = true;
+    this.messageSuccess = undefined;
+    this.messageError = undefined;
+    this.servicer.createCustomer(this.customer).subscribe(
+      (success) => {
+        this.showSpinner = false;
+        this.messageSuccess = 'Customer was created successfully!';
+      },
+      (error) => {
+        this.showSpinner = false;
+        this.messageError = 'Could not create the customer';
+      }
+    );
+  }
+
 
   uniqueNameValidator(control: FormControl): { [message: string]: boolean } {
     var self = this;

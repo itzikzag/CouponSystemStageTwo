@@ -15,26 +15,17 @@ export class CreatecouponComponent implements OnInit {
   public coupons: Coupon[];
   public messageSuccess: String;
   public messageError: String;
+
+  showSpinner: boolean = true;
+
   constructor(private servicer: CompanyService, private fb: FormBuilder) { }
 
-  createCoupon() {
-
-    this.messageError = undefined;
-    this.messageSuccess = undefined;
-    this.servicer.createCoupon(this.coupon).subscribe(
-      (success) => {
-        this.messageSuccess = 'Coupon was created successfully!';
-      },
-      (error) => {
-        this.messageError = 'could not create a coupon!';
-      }
-    );
-  }
   ngOnInit() {
     var self = this;
     this.coupons = new Array();
     self.servicer.getAllCoupons().subscribe(
-      function (coupons) {
+      (coupons)=> {
+        self.showSpinner = false;
         for (let c of coupons) {
           c = new Coupon(c);
           self.coupons.push(c);
@@ -51,6 +42,23 @@ export class CreatecouponComponent implements OnInit {
       'price': [null, [Validators.required, Validators.min(0)]],
       'image': [null, [Validators.required]]
     })
+  }
+
+  createCoupon() {
+
+    this.showSpinner = true;
+    this.messageError = undefined;
+    this.messageSuccess = undefined;
+    this.servicer.createCoupon(this.coupon).subscribe(
+      (success) => {
+        this.showSpinner = false;
+        this.messageSuccess = 'Coupon was created successfully!';
+      },
+      (error) => {
+        this.showSpinner = false;
+        this.messageError = 'could not create a coupon!';
+      }
+    );
   }
 
 

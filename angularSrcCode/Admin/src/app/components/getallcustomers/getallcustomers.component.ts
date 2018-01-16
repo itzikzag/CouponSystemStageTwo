@@ -14,13 +14,31 @@ export class GetallcustomersComponent implements OnInit {
   public customers: Customer[] = [];
   public customer: Customer = new Customer();
 
+  showSpinner: boolean = true;
+
   constructor(private servicer: AdminService) { }
 
+  ngOnInit() {
+    var self = this;
+    self.customers = new Array();
+    self.servicer.getAllCustomers().subscribe(
+      (customers)=> {
+        this.showSpinner = false;
+        for (let c of customers) {
+          c = new Customer(c);
+          self.customers.push(c);
+        }
+      }
+    );
+  } 
+ 
   clickDelete() {
     var self = this;
+    self.showSpinner = true;
     var message = this.customer.getCustName + " was deleted";
     this.servicer.deleteCustomer(this.customer).subscribe(
       (success)=> {
+        self.showSpinner = false;
         swal({
           title: "Oh",
           text: message,
@@ -32,9 +50,11 @@ export class GetallcustomersComponent implements OnInit {
   }
 
   clickUpdate() {
+    this.showSpinner = true;
     var message = this.customer.getCustName + " was successfully updated!";
     this.servicer.updateCustomer(this.customer).subscribe(
       (success)=> {
+        this.showSpinner = false;
         swal({
           title: "Great job!",
           text: message,
@@ -45,27 +65,17 @@ export class GetallcustomersComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-    var self = this;
-    self.customers = new Array();
-    self.servicer.getAllCustomers().subscribe(
-      function (customers) {
-        for (let c of customers) {
-          c = new Customer(c);
-          self.customers.push(c);
-        }
-      }
-    );
-  }
   setCustomer(customer: Customer) {
     this.customer = customer;
   }
 
   reset(){
     var self = this;
+    self.showSpinner = true;
     self.customers = new Array();
     self.servicer.getAllCustomers().subscribe(
-      function (customers) {
+      (customers) => {
+        self.showSpinner = false;
         for (let c of customers) {
           c = new Customer(c);
           self.customers.push(c);

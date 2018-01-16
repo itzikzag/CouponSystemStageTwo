@@ -14,6 +14,8 @@ export class GetallpurchasedcouponsComponent implements OnInit {
   public coupon: Coupon = new Coupon();
   public type: CouponType;
   public price: number;
+  showSpinner: boolean = true;
+
 
   constructor(private servicer: CustomerService) { }
 
@@ -21,8 +23,9 @@ export class GetallpurchasedcouponsComponent implements OnInit {
     var self = this;
     this.coupons = new Array();
     self.servicer.getAllPurchasedCoupons().subscribe(
-      (coupons)=>{
-          for (let c of coupons) {
+      (coupons) => {
+        self.showSpinner = false;
+        for (let c of coupons) {
           c = new Coupon(c);
           self.coupons.push(c);
         }
@@ -31,17 +34,25 @@ export class GetallpurchasedcouponsComponent implements OnInit {
   }
 
   clickPurchase() {
-    this.servicer.purchaseCoupon(this.coupon).subscribe
-      (
-      function (response) { }
-      );
+    this.showSpinner = true;
+    this.servicer.purchaseCoupon(this.coupon).subscribe(
+      (success) =>{
+        this.showSpinner = false;
+      },
+      (error) => {
+        this.showSpinner = false;
+        console.log("something went wrong");
+      }
+    );
   }
 
   clickPrice() {
     var self = this;
+    self.showSpinner = true;
     this.coupons = new Array();
     self.servicer.getAllPurchasedCouponsByPrice(self.price).subscribe(
-      (coupons)=>{
+      (coupons) => {
+        self.showSpinner = false;
         for (let c of coupons) {
           c = new Coupon(c);
           self.coupons.push(c);
@@ -52,9 +63,11 @@ export class GetallpurchasedcouponsComponent implements OnInit {
 
   clickType() {
     var self = this;
+    self.showSpinner = true;
     this.coupons = new Array();
     self.servicer.getAllPurchasedCouponsByType(self.type).subscribe(
-      (coupons)=>{
+      (coupons) => {
+        self.showSpinner = false;
         for (let c of coupons) {
           c = new Coupon(c);
           self.coupons.push(c);

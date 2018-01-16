@@ -10,16 +10,21 @@ import { Component, OnInit } from '@angular/core';
 export class GetcompanyComponent implements OnInit {
 
   public company: Company = new Company();
+  showSpinner : boolean = true;
+
   constructor(private servicer: CompanyService) { }
 
   ngOnInit() {
     var self = this;
     self.servicer.getCompany().subscribe(
       (company) => {
+        self.showSpinner = false;
         this.company = new Company(company);
       },
-      (error) => console.log('something went wrong...')
-
+      (error) => {
+        self.showSpinner = false;
+        console.log('something went wrong...')
+      }
     );
   }
 }

@@ -1,53 +1,55 @@
-<hr>
-<div class="container">
-  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-    <a class="navbar-brand">
-      <div class="dropdown">
-        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">
-          Company options
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <li>
-            <a class="dropdown-item" href="#" routerLink="/createcompany">Create Company</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#" routerLink="/getcompany">Get company</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#" routerLink="/getallcompanies">Get all companies!</a>
-          </li>
-        </ul>
-      </div>
-    </a>
+<body>
+  <div class="container">
+    <nav class="navbar navbar-light" style="background-color: #284b65;">
+      <a class="navbar-brand">
+        <div class="dropdown">
+          <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            Company options
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/createcompany">Create Company</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/getcompany">Get company</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/getallcompanies">Get all companies!</a>
+            </li>
+          </ul>
+        </div>
+      </a>
 
-    <a class="navbar-brand">
-      <div class="dropdown">
-        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">
-          Customer options
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <li>
-            <a class="dropdown-item" href="#" routerLink="/createcustomer">Create Customer</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#" routerLink="/getcustomer">Get customer</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#" routerLink="/getallcustomers">Get all customers!</a>
-          </li>
-        </ul>
-      </div>
-    </a>
-  </nav>
+      <a class="navbar-brand">
+        <div class="dropdown">
+          <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            Customer options
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/createcustomer">Create Customer</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/getcustomer">Get customer</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/getallcustomers">Get all customers!</a>
+            </li>
+          </ul>
+        </div>
+      </a>
 
-  <h1 class="text-center">Welcome dear Admin!
-    <br> Choose your action from the actions above
-  </h1>
+    </nav>
 
-  <router-outlet></router-outlet>
-</div>
+    <h1 class="text-center">Welcome dear Admin!
+      <br> Choose your action from the actions above
+    </h1>
+
+    <router-outlet></router-outlet>
+  </div>
+</body>
 
 <div class="myFooter">
   CouponSystem

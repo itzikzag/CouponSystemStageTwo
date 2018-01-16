@@ -30,10 +30,10 @@ public class ServletController {
 				request.getSession().setAttribute("facade", adminFacade);
 				request.getSession().setAttribute("authenticated", true);
 				} catch (CouponSystemException e) {
-				response.sendRedirect("/CouponSystem/fail.html");
+				response.sendRedirect("/fail.html");
 			}
 			if (adminFacade != null) {
-				response.sendRedirect("/CouponSystem/Admin/index.html");
+				response.sendRedirect("/Admin/index.html");
 			}
 
 			break;
@@ -45,10 +45,10 @@ public class ServletController {
 				request.getSession().setAttribute("facade", companyFacade);
 				request.getSession().setAttribute("authenticated", true);
 			} catch (CouponSystemException e) {
-				response.sendRedirect("/CouponSystem/fail.html");
+				response.sendRedirect("/fail.html");
 			}
 			if (companyFacade != null) {
-				response.sendRedirect("/CouponSystem/Company/index.html");
+				response.sendRedirect("/Company/index.html");
 			}
 			break;
 
@@ -59,10 +59,10 @@ public class ServletController {
 				request.getSession().setAttribute("facade", customerFacade);
 				request.getSession().setAttribute("authenticated", true);
 			} catch (CouponSystemException e) {
-				response.sendRedirect("/CouponSystem/fail.html");
+				response.sendRedirect("/fail.html");
 			}
 			if (customerFacade != null) {
-				response.sendRedirect("/CouponSystem/Customer/index.html");
+				response.sendRedirect("/Customer/index.html");
 			}
 			break;
 
