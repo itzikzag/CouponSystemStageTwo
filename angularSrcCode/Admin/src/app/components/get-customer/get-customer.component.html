@@ -1,4 +1,5 @@
 <h2 class="text-center"> Insert Customer's ID to get the details</h2>
+<app-spinner *ngIf="showSpinner"></app-spinner>
 <br>
 <div class="row">
   <div class="alert alert-danger" *ngIf="messageError!=undefined">{{messageError}}</div>
@@ -30,6 +31,5 @@
         <td>{{customer.getPassword}}</td>
       </tr>
     </table>
-    <app-spinner *ngIf="showSpinner"></app-spinner>
   </div>
 </div>

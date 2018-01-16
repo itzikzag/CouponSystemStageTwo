@@ -1,3 +1,4 @@
+<app-spinner *ngIf="showSpinner"></app-spinner>
 <div class="jumbotron">
   <h2 class="text-center"> Companies List</h2>
   <table class="table table-sm table-hover">
@@ -23,7 +24,6 @@
     </tbody>
   </table>
 </div>
-<app-spinner *ngIf="showSpinner"></app-spinner>
 <div id="update" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="updateLabel" aria-hidden="true" style="top:52%;">
   <div class="modal-content">
     <div class="modal-header">

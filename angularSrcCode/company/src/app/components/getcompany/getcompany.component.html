@@ -1,4 +1,4 @@
-<hr>
+<app-spinner *ngIf="showSpinner"></app-spinner>
 <div class="row">
   <div class="jumbotron">
         <h4 class="text-center"> Company Details</h4>
@@ -16,7 +16,6 @@
                 <td>{{company.getEmail}}</td>
             </tr>
         </table>
-        <app-spinner *ngIf="showSpinner"></app-spinner>
   </div>
 </div>
 

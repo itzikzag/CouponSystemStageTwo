@@ -1,4 +1,5 @@
 <h2 class="text-center"> Insert Company's ID to get the details</h2>
+<app-spinner *ngIf="showSpinner"></app-spinner>
 <br>
 <div class="row justify-content-md-center">
   <div class="alert alert-danger" *ngIf="messageError!=undefined">{{messageError}}</div>
@@ -36,6 +37,5 @@
         </tr>
       </tbody>
     </table>
-    <app-spinner *ngIf="showSpinner"></app-spinner>
   </div>
 </div>

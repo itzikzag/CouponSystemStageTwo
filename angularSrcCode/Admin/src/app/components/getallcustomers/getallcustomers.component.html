@@ -1,3 +1,4 @@
+<app-spinner *ngIf="showSpinner"></app-spinner>
 <div class="jumbotron">
   <h2 class="text-center"> Customers details </h2>
   <table class="table table-sm table-hover">
@@ -14,12 +15,13 @@
         <td>{{customer.getId}}</td>
         <td>{{customer.getCustName}}</td>
         <td>{{customer.getPassword}}</td>
-        <td><button class="btn btn-primary" data-toggle="modal" data-target="#update" (click) = "setCustomer(customer)">Edit</button></td>
+        <td>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#update" (click)="setCustomer(customer)">Edit</button>
+        </td>
       </tr>
     </tbody>
   </table>
 </div>
-<app-spinner *ngIf="showSpinner"></app-spinner>
 
 <div id="update" class="modal fade" role="dialog">
   <div class="modal-content">
@@ -40,7 +42,9 @@
           <tr>
             <td>{{customer.getId}}</td>
             <td>{{customer.getCustName}}</td>
-            <td><input type="password" [(ngModel)] = "customer.setPassword"></td>
+            <td>
+              <input type="password" [(ngModel)]="customer.setPassword">
+            </td>
           </tr>
         </tbody>
       </table>
@@ -50,4 +54,3 @@
     </div>
   </div>
 </div>
-            

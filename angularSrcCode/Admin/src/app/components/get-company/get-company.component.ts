@@ -19,8 +19,8 @@ export class GetCompanyComponent implements OnInit {
   constructor(private servicer: AdminService) { }
 
   onClicked() {
-    self.showSpinner = true;
     var self = this;
+    self.showSpinner = true;
     this.messageError = undefined;
     this.messageSuccess = undefined;
     self.servicer.getCompany(this.id).subscribe(
