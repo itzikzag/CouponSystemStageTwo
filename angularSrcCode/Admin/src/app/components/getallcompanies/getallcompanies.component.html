@@ -1,0 +1,61 @@
+<div class="jumbotron">
+  <h2 class="text-center"> Companies List</h2>
+  <table class="table table-sm table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Password</th>
+        <th>Email</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let company of companies">
+        <td>{{company.getId}}</td>
+        <td>{{company.getCompName}}</td>
+        <td>{{company.getPassword}}</td>
+        <td>{{company.getEmail}}</td>
+        <td>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#update" (click)="setCompany(company)">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="update" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="updateLabel" aria-hidden="true" style="top:52%;">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Choose your action</h4>
+    </div>
+    <div class="modal-body">
+      <table class="table table-sm table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Password</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{company.getId}}</td>
+            <td>{{company.getCompName}}</td>
+            <td>
+              <input type="password" [(ngModel)]="company.setPassword" />
+            </td>
+            <td>
+              <input type="email" [(ngModel)]="company.setEmail" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-primary" (click)="clickDelete()" data-dismiss="modal">Delete</button>
+      <button class="btn btn-primary" (click)="clickUpdate()" data-dismiss="modal">Update</button>
+      <button type="button" (click)="reset()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>

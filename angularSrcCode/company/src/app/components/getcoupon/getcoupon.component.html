@@ -1,0 +1,47 @@
+<hr>
+<h2 class="text-center">Type your Coupon's ID to get your coupon's details!</h2>
+<br>
+<div class="row justify-content-md-center">
+  <div class="col-sm-3" style="margin-left:30%">
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">ID</span>
+      <input type="number" class="form-control" placeholder="ID" aria-label="Id" aria-describedby="basic-addon1" [(ngModel)]="id"
+      />
+    </div>
+  </div>
+  <button (click)="onClicked()" class="btn btn-primary">Get!</button>
+</div>
+<div class="alert alert-danger" *ngIf="messageError!=undefined">{{messageError}}</div>
+<div class="alert alert-danger" *ngIf="messageSuccess!=undefined">{{messageSuccess}}</div>
+<br>
+<div class="row">
+  <div class="jumbotron">
+    <h4 class="text-center">Coupon Details</h4>
+    <table class="table">
+      <tr>
+        <th></th>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Amount</th>
+        <th>Type</th>
+        <th>Message</th>
+        <th>Price</th>
+      </tr>
+      <tr>
+        <td>
+          <img style="width:50%; height:50%" src="{{coupon.getImage}}">
+        </td>
+        <td>{{coupon.getId}}</td>
+        <td>{{coupon.getTitle}}</td>
+        <td>{{coupon.getStartDate}}</td>
+        <td>{{coupon.getEndDate}}</td>
+        <td>{{coupon.getAmount}}</td>
+        <td>{{coupon.getType}}</td>
+        <td>{{coupon.getMessage}}</td>
+        <td>{{coupon.getPrice}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

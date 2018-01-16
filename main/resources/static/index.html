@@ -1,0 +1,27 @@
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="index.css">
+
+</head>
+
+
+<body>
+	<div class="login">
+		<h1>Login</h1>
+		<form action="/CouponSystem/servlet" method="POST">
+			<input type="text" name="name" placeholder="Username" required="required" />
+			<input type="password" name="pass" placeholder="Password" required="required" />
+			<br>
+			<select class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="ctype">
+				<option value="ADMIN">Admin</option>
+				<option value="COMPANY">Company</option>
+				<option value="CUSTOMER">Customer</option>
+			</select>
+			<button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+		</form>
+	
+	</div>
+</body>
+
+</html>

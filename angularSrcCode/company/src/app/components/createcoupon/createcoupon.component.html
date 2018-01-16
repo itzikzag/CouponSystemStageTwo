@@ -1,0 +1,73 @@
+<h2 class="text-center"> New Company!</h2>
+<form [formGroup]="newCouponForm" (ngSubmit)="createCoupon()">
+  <div class="row">
+    <div class="alert alert-danger" *ngIf="messageError!=undefined">{{messageError}}</div>
+    <div class="alert alert-success" *ngIf="messageSuccess!=undefined">{{messageSuccess}}</div>
+    <div class="col-md-4">
+      <label>Coupon title</label>
+      <input type="text" class="form-control" placeholder="Coupon name" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="coupon.setTitle"
+        formControlName="title" />
+      <div class="alert alert-danger" *ngIf="newCouponForm.get('title').hasError('NameIsTaken')">
+        Title is already taken!
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label>Start Date</label>
+      <input type="date" class="form-control" placeholder="xx/xx/xxxx" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="coupon.setStartDate"
+        formControlName="startDate" />
+    </div>
+    <div class="col-md-4">
+      <label>End Date</label>
+      <input type="date" class="form-control" placeholder="xx/xx/xxxx" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="coupon.setEndDate"
+        formControlName="endDate" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Amount</label>
+      <input type="number" class="form-control" placeholder="amount" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="coupon.setAmount"
+        formControlName="amount" />
+      <div class="alert alert-danger" *ngIf="newCouponForm.get('amount').hasError('min')">
+        Please enter an amount greater than 0
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label>Type</label>
+      <select class="form-control" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="coupon.setType" formControlName="type">
+        <option value="RESTURANTS">RESTURANTS</option>
+        <option value="ELECTRICITY">ELECTRICITY</option>
+        <option value="FOOD">FOOD</option>
+        <option value="SPORTS">SPORTS</option>
+        <option value="CAMPING">CAMPING</option>
+        <option value="TRAVELLING">TRAVELLING</option>
+        <option value="LUXURY">LUXURY</option>
+        <option value="WATCHES">WATCHES</option>
+        <option value="CARS">CARS</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label>Message</label>
+      <input type="text" class="form-control" placeholder="message" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="coupon.setMessage"
+        formControlName="message" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label>Price</label>
+      <input type="number" class="form-control" placeholder="&#8362;" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="coupon.setPrice"
+        formControlName="price" />
+      <div class="alert alert-danger" *ngIf="newCouponForm.get('price').hasError('min')">
+        Please enter a price greater than 0
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label>Image</label>
+      <input type="text" class="form-control" placeholder="url" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="coupon.setImage"
+        formControlName="image" />
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="!newCouponForm.valid"> Create! </button>
+  </div>
+</form>

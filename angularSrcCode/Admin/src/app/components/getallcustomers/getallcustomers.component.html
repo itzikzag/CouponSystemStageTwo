@@ -1,0 +1,52 @@
+<div class="jumbotron">
+  <h2 class="text-center"> Customers details </h2>
+  <table class="table table-sm table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Password</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <td>{{customer.getId}}</td>
+        <td>{{customer.getCustName}}</td>
+        <td>{{customer.getPassword}}</td>
+        <td><button class="btn btn-primary" data-toggle="modal" data-target="#update" (click) = "setCustomer(customer)">Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  
+<div id="update" class="modal fade" role="dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Choose your action</h4>
+    </div>
+    <div class="modal-body">
+      <table class="table table-sm table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Password</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{customer.getId}}</td>
+            <td>{{customer.getCustName}}</td>
+            <td><input type="password" [(ngModel)] = "customer.setPassword"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-primary" (click)="clickDelete()" data-dismiss="modal">Delete</button>
+      <button class="btn btn-primary" (click)="clickUpdate()" data-dismiss="modal">Update</button>
+      <button type="button" (click)="reset()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
+            

@@ -1,0 +1,28 @@
+<h2 class="text-center"> New Customer!</h2>
+<form [formGroup]="newCustomerForm" (ngSubmit)="createCustomer()">
+  <div class="row">
+    <div class="alert alert-danger" *ngIf="messageError!=undefined">{{messageError}}</div>
+    <div class="alert alert-success" *ngIf="messageSuccess!=undefined">{{messageSuccess}}</div>
+    <div class="input-group">
+      <label class="input-group-addon" id="basic-addon1">Name</label>
+      <input type="text" class="form-control" placeholder="customer name" aria-label="Username" aria-describedby="basic-addon1"
+        [(ngModel)]="customer.setCustName" formControlName="custName" />
+      <label class="input-group-addon" id="basic-addon1">Password</label>
+      <input type="password" class="form-control" placeholder="password" aria-label="Username" aria-describedby="basic-addon1"
+        [(ngModel)]="customer.setPassword" formControlName="password" />
+    </div>
+    <div class="alert alert-danger" *ngIf="newCustomerForm.get('custName').hasError('NameIsTaken')">
+      Customer name is already taken!
+    </div>
+    <div class="alert alert-danger" *ngIf="newCustomerForm.get('custName').hasError('required') && newCustomerForm.get('custName').touched">
+      Please enter a name
+    </div>
+    <div class="alert alert-danger" *ngIf="newCustomerForm.get('password').hasError('required') && newCustomerForm.get('password').touched">
+      Please enter a password
+    </div>
+
+  </div>
+  <div class="row">
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="!newCustomerForm.valid"> Create! </button>
+  </div>
+</form>

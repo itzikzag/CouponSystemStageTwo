@@ -1,0 +1,30 @@
+<hr>
+<div class="container">
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd; ">
+    <a class="navbar-brand">
+      <div class="dropdown">
+        <a class="btn btn-primary dropdown-toggle" href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Options
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li>
+            <a class="dropdown-item" href="#" routerLink="/purchasecoupon">Purchase A Coupon</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#" routerLink="/getallpurchasedcoupons">View Your Coupons</a>
+          </li>
+        </ul>
+      </div>
+    </a>
+  </nav>
+  <h1>Welcome {{customer.getCustName}}
+    <br> Choose your action from the actions above
+  </h1>
+  <router-outlet></router-outlet>
+</div>
+
+<div class="myFooter">
+  CouponSystem
+  <br> &copy; 2018
+</div>

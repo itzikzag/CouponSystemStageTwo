@@ -1,0 +1,34 @@
+<h2 class="text-center"> Insert Customer's ID to get the details</h2>
+<br>
+<div class="row">
+  <div class="alert alert-danger" *ngIf="messageError!=undefined">{{messageError}}</div>
+  <div class="alert alert-danger" *ngIf="messageSuccess!=undefined">{{messageSuccess}}</div>
+  <div class="col-sm-3" style="margin-left:37.5%">
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">ID </span>
+      <input type="number" class="form-control" placeholder="ID" aria-label="Id" aria-describedby="basic-addon1" [(ngModel)]="id"
+      />
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <button (click)="onClicked()" class="btn btn-primary btn-block">Get!</button>
+</div>
+<div class="row">
+  <div class="jumbotron">
+    <h4 class="text-center">Customer Details</h4>
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Password</th>
+      </tr>
+      <tr>
+        <td>{{customer.getId}}</td>
+        <td>{{customer.getCustName}}</td>
+        <td>{{customer.getPassword}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

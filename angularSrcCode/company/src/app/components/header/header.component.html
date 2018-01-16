@@ -1,0 +1,36 @@
+<hr>
+<div class="container">
+  <nav class="navbar navbar-light" style="background-color: #7d7d7e; ">
+    <a class="navbar-brand">
+      <div class="dropdown">
+        <a class="btn btn-primary dropdown-toggle" href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Options
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li>
+            <a class="dropdown-item" href="#" routerLink="/createcoupon">Create Coupon!</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#" routerLink="/getcoupon">View A Coupon!</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#" routerLink="/getallcoupons">View Your Coupons</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#" routerLink="/getcompany"> Company Details</a>
+          </li>
+        </ul>
+      </div>
+    </a>
+  </nav>
+  <h1 class="text-center">Welcome {{company.getCompName}}!
+    <br> Choose your action from the actions above
+  </h1>
+  <router-outlet></router-outlet>
+</div>
+
+<div class="myFooter">
+  CouponSystem
+  <br> &copy; 2018
+</div>
