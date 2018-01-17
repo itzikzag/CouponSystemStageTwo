@@ -6,6 +6,7 @@ import { Coupon } from '../models/coupon';
 import { CouponType } from '../models/coupontype';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/share';
 
 @Injectable()
 export class CompanyService {
@@ -76,6 +77,21 @@ export class CompanyService {
     return this._http.get(url)
       .map(response => response.json())
       .catch(this.errorHandler);
+  }
+
+  logout() {
+    let url = this.urlRel + 'companylogout';
+    return this._http.get(url)
+      .catch(this.errorHandler);
+  }
+
+  loginCheck() : Observable<boolean>{
+    var self = this;
+    return self._http.get('../././companylogincheck')
+      .map((res) => res.json())
+      .share()
+      .catch(this.errorHandler);
+
   }
 
 }

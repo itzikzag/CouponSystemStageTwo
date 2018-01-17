@@ -5,6 +5,7 @@ import { Company } from '../models/company';
 import { Customer } from '../models/customer';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/share';
 
 @Injectable()
 export class AdminService {
@@ -88,6 +89,22 @@ export class AdminService {
       .map(response => response.json())
       .catch(this.errorHandler);
   }
+
+  logout() {
+    let url = this.urlRel + 'adminlogout';
+    return this._http.get(url)
+      .catch(this.errorHandler);
+  }
+
+  loginCheck() : Observable<boolean>{
+    var self = this;
+    return self._http.get('../././adminlogincheck')
+      .map((res) => res.json())
+      .share()
+      .catch(this.errorHandler);
+
+  }
+
 
 
 }

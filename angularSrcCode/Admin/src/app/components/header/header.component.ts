@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../../services/admin.service';
 
 @Component({
   selector: 'app-header',
@@ -7,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:AdminService) { }
 
   ngOnInit() {
   }
 
-  
+  logout(){
+    this.service.logout().subscribe(
+      (success)=>{console.log('bye bye!')},
+    (error)=>console.error('error!')
+    )
+    window.location.href = "../././";
+  }
 }

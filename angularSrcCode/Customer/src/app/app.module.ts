@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
+import { AuthGuardService } from './services/auth-guard.service'
 import { CustomerService } from './services/customer.service';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -28,15 +29,17 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     RouterModule.forRoot([
       {
         path: 'purchasecoupon',
-        component: PurchasecouponComponent
+        component: PurchasecouponComponent,
+        canActivate:[AuthGuardService]
       },
       {
         path: 'getallpurchasedcoupons',
-        component: GetallpurchasedcouponsComponent
+        component: GetallpurchasedcouponsComponent,
+        canActivate:[AuthGuardService]
       }
     ])
   ],
-  providers: [CustomerService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [CustomerService, {provide: LocationStrategy, useClass: HashLocationStrategy}, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

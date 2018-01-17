@@ -22,4 +22,12 @@ export class HeaderComponent implements OnInit {
     );
   }
 
+  logout(){
+    this.servicer.logout().subscribe(
+      (success)=>{console.log('bye bye!')},
+    (error)=>console.error('error!')
+    )
+    window.location.href = "../././";
+  }
+
 }

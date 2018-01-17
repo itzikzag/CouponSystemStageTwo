@@ -117,5 +117,11 @@ public class CustomerRest {
 		return null;
 
 	} 
+	@RequestMapping(value = "/customerlogout", method = RequestMethod.GET)
+	public void logout(HttpServletRequest request)
+			throws CouponSystemException
+	{
+		request.getSession().invalidate();
+	}
 
 }

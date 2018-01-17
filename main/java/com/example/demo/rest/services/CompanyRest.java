@@ -153,5 +153,12 @@ public class CompanyRest {
 		}
 		return null;
 	}
+	
+	@RequestMapping(value = "/companylogout", method = RequestMethod.GET)
+	public void logout(HttpServletRequest request)
+			throws CouponSystemException
+	{
+		request.getSession().invalidate();
+	}
 
 }

@@ -8,23 +8,20 @@
         <th>Name</th>
         <th>Password</th>
         <th>Email</th>
-        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let company of companies">
+      <tr class="clickable-row" data-toggle="modal" data-target="#update" *ngFor="let company of companies" (click)="setCompany(company)">
         <td>{{company.getId}}</td>
         <td>{{company.getCompName}}</td>
         <td>{{company.getPassword}}</td>
         <td>{{company.getEmail}}</td>
-        <td>
-          <button class="btn btn-primary" data-toggle="modal" data-target="#update" (click)="setCompany(company)">Edit</button>
-        </td>
+        
       </tr>
     </tbody>
   </table>
 </div>
-<div id="update" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="updateLabel" aria-hidden="true" style="top:52%;">
+<div id="update" class="modal fade" role="dialog">
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal">&times;</button>

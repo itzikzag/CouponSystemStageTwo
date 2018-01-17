@@ -3,8 +3,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HashLocationStrategy, Location, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
+import { AuthGuardService } from './services/auth-guard.service';
 import { CompanyService } from './services/company.service';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -33,24 +34,28 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     RouterModule.forRoot([
       {
       path: 'createcoupon',
-      component:CreatecouponComponent
+      component:CreatecouponComponent,
+      canActivate:[AuthGuardService]
       },
       {
       path: 'getcoupon',
-      component: GetcouponComponent
+      component: GetcouponComponent,
+      canActivate:[AuthGuardService]
       },
       {
       path: 'getcompany',
-      component: GetcompanyComponent
+      component: GetcompanyComponent,
+      canActivate:[AuthGuardService]
       },
       {
       path: 'getallcoupons',
-      component:GetallcouponsComponent
+      component:GetallcouponsComponent,
+      canActivate:[AuthGuardService]
       }
     ])
   ],
 
-  providers: [CompanyService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [CompanyService, {provide: LocationStrategy, useClass: HashLocationStrategy}, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

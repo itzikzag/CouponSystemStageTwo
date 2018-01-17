@@ -195,4 +195,12 @@ public class AdminRest
 		return false;
 	}
 
+	@RequestMapping(value = "/adminlogout", method = RequestMethod.GET)
+	public void logout(HttpServletRequest request)
+			throws CouponSystemException
+	{
+		request.getSession().invalidate();
+	}
+
+	
 }

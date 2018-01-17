@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HashLocationStrategy,  LocationStrategy } from '@angular/common';
 
+import { AuthGuardService } from './services/auth-guard.service';
 import { AdminService } from './services/admin.service';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -36,37 +37,40 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     HttpModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      {
-        path: 'header',
-        component: HeaderComponent
-      },
+     
       {
         path: 'createcompany',
-        component: CreatecompanyComponent
+        component: CreatecompanyComponent,
+        canActivate:[AuthGuardService]
       },
       {
         path: 'getallcompanies',
-        component: GetallcompaniesComponent
+        component: GetallcompaniesComponent,
+        canActivate:[AuthGuardService]
       },
       {
         path: 'getcompany',
-        component: GetCompanyComponent
+        component: GetCompanyComponent,
+        canActivate:[AuthGuardService]
       },
       {
         path: 'createcustomer',
-        component: CreatecustomerComponent
+        component: CreatecustomerComponent,
+        canActivate:[AuthGuardService]
       },
       {
         path: 'getallcustomers',
-        component: GetallcustomersComponent
+        component: GetallcustomersComponent,
+        canActivate:[AuthGuardService]
       },
       {
         path: 'getcustomer',
-        component: GetCustomerComponent
+        component: GetCustomerComponent,
+        canActivate:[AuthGuardService]
       }
     ])
   ],
-  providers: [AdminService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [AdminService, {provide: LocationStrategy, useClass: HashLocationStrategy}, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
